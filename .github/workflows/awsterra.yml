@@ -33,9 +33,11 @@ jobs:
 
     - name: Validate Terraform configuration
       run: terraform validate
+    - name: Plan Terraform deployment
+      run: terraform plan -out=tfplan
 
     - name: Apply Terraform plan
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve tfplan
 
     - name: Output instance ID
       run: echo "Instance ID: $(terraform output instance_id)"
